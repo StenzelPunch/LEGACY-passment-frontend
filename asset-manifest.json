@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/StenzelPunch/PassMent/static/css/main.16e18a48.chunk.css",
+    "main.js": "/StenzelPunch/PassMent/static/js/main.8b48c604.chunk.js",
+    "main.js.map": "/StenzelPunch/PassMent/static/js/main.8b48c604.chunk.js.map",
+    "runtime-main.js": "/StenzelPunch/PassMent/static/js/runtime-main.4fd41238.js",
+    "runtime-main.js.map": "/StenzelPunch/PassMent/static/js/runtime-main.4fd41238.js.map",
+    "static/js/2.169a308a.chunk.js": "/StenzelPunch/PassMent/static/js/2.169a308a.chunk.js",
+    "static/js/2.169a308a.chunk.js.map": "/StenzelPunch/PassMent/static/js/2.169a308a.chunk.js.map",
+    "index.html": "/StenzelPunch/PassMent/index.html",
+    "precache-manifest.f99d476bcf372c76fa13d2ca9214ba9a.js": "/StenzelPunch/PassMent/precache-manifest.f99d476bcf372c76fa13d2ca9214ba9a.js",
+    "service-worker.js": "/StenzelPunch/PassMent/service-worker.js",
+    "static/css/main.16e18a48.chunk.css.map": "/StenzelPunch/PassMent/static/css/main.16e18a48.chunk.css.map",
+    "static/js/2.169a308a.chunk.js.LICENSE": "/StenzelPunch/PassMent/static/js/2.169a308a.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4fd41238.js",
+    "static/js/2.169a308a.chunk.js",
+    "static/css/main.16e18a48.chunk.css",
+    "static/js/main.8b48c604.chunk.js"
+  ]
+}

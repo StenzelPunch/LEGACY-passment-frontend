@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory} from "react-router-dom";
 import { loadData } from "../../backend.js";
-import images from "../../assets/images";
 
 import "./Card.css";
 
@@ -48,7 +47,7 @@ function Card(props) {
                     <div className="card-img">
                         <img
                             className="card-img__avatar"
-                            src={avatarUrl ? avatarUrl : images.adminAvatar}
+                            src={avatarUrl ? avatarUrl : "/images/admin.png"}
                             alt="user-avatar"
                         />
                     </div>

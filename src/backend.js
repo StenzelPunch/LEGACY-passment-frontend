@@ -64,8 +64,6 @@ function loadMembers(callback) {
     }
 }
 
-function uploadImage(file, name) {}
-
 function createMember(info, links, file) {
     return new Promise((resolve, reject) => {
         db.collection("members")
@@ -79,7 +77,7 @@ function createMember(info, links, file) {
             .then(function(res) {
                 if (file) {
                     storage
-                        .refFromURL("gs://passment-be.appspot.com/avatars/")
+                        .refFromURL("gs://passment-be.appspot.com/avatars/" + info.url + ".png")
                         .put(file)
                         .then(msg => {
                             alert("success");
@@ -99,4 +97,4 @@ function createMember(info, links, file) {
 
 export default backend;
 
-export { db, storage, loadData, loadMembers, createMember, uploadImage };
+export { db, storage, loadData, loadMembers, createMember };

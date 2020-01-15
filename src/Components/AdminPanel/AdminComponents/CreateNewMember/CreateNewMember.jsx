@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { createMember , storage} from "../../../../backend.js";
+import { createMember } from "../../../../backend.js";
 
 import "./CreateNewMember.css";
 
@@ -55,6 +55,7 @@ function CreateNewMember(props) {
 
     const [info, setInfo] = useState({});
     const [links, setLinks] = useState({});
+    const [file, setFile] = useState(null);
     const [created, setCreated] = useState(false);
 
     return (
@@ -69,10 +70,23 @@ function CreateNewMember(props) {
                             <div className="input-list">
                                 <h4>Member info</h4>
                                 {createInputs(infoList, info, setInfo)}
-                                <input type="file" onInput={fileInput}/>
+                                <div className="input-group">
+                                    <label className="input-label custom-file-upload" htmlFor="file">
+                                        {file ? file.name : "Upload avatar"}
+                                        <input
+                                            type="file"
+                                            id="file"
+                                            onInput={e => {
+                                                setFile(e.target.files[0]);
+                                            }}
+                                        />
+                                    </label>
+                                </div>
                             </div>
                             <div className="input-list">
-                                <h4>Links <small>**at least one of the list</small></h4>
+                                <h4>
+                                    Links <small>**at least one of the list</small>
+                                </h4>
                                 {createInputs(linkList, links, setLinks)}
                             </div>
                         </div>
@@ -85,25 +99,10 @@ function CreateNewMember(props) {
         </>
     );
 
-    function fileInput(e) {
-        // const image = new File(e.target.files[0], '')
-        // console.log(image.name);
-
-        storage
-                        .refFromURL(`gs://passment-be.appspot.com/avatars/${e.target.files[0].name}`)
-                        .put(e.target.files[0])
-                        .then(msg => {
-                            alert("success");
-                        })
-                        .catch(error => {
-                            alert(error.message);
-                        });
-    }
-
     function create(e) {
         e.preventDefault();
-        createMember(info, links, setCreated).then(() => {
-            console.log('success')
+        createMember(info, links, file).then(() => {
+            setCreated(true);
         });
     }
 }

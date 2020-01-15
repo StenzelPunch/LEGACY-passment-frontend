@@ -1,3 +1,16 @@
+.create {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.create form{
+    width: 100%;
+}
+.create-form{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
 .input-list {
     display: flex;
     flex-direction: column;
@@ -6,6 +19,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
+    max-width: 480px;
     width: 100%;
     margin: 5px 0;
 }
@@ -15,10 +29,57 @@
 
 .input-text {
     border: 1px solid #63ADF2;
-    max-width: 320px;
-    width: 100%;
+    min-width: 240px;
+    width: calc(100% - 120px);
+    margin-left: auto;
     border-radius: 2px;
     height: 24px;
     font-size: 14px;
 }
 
+.creation-success {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 320px;
+    width: 100%;
+    color: rgb(0, 206, 120);
+    font-size: 36px;
+}
+
+.btn {
+    min-width: 100px;
+    padding: 0 10px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    border: none;
+}
+
+.btn:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.btn-create {
+    margin: 30px auto;
+    background-color: rgb(0, 206, 120);
+    color: #fff;
+}
+
+.create h3 {
+    margin: 20px 0 10px;
+    color: #175676;
+}
+
+.create h4 {
+    margin: 20px 0 10px;
+}
+
+.create small {
+    font-size: 10px;
+    font-weight: 200;
+    text-decoration: wavy;
+}

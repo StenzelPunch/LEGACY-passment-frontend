@@ -1,4 +1,6 @@
-import * as firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/firestore";
+import "firebase/storage";
 import config from "./local/config";
 
 const backend = !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
@@ -44,17 +46,57 @@ function loadData(params) {
 }
 
 function loadMembers(callback) {
-    db.collection("members")
-        .get()
-        .then(res => {
-            callback(
-                res.docs.map(doc => {
-                    return doc.data();
-                })
-            );
-        });
+    try {
+        db.collection("members")
+            .get()
+            .then(res => {
+                callback(
+                    res.docs.map(doc => {
+                        return doc.data();
+                    })
+                );
+            })
+            .catch(error => {
+                throw new Error(error);
+            });
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+function uploadImage(file, name) {}
+
+function createMember(info, links, file) {
+    return new Promise((resolve, reject) => {
+        db.collection("members")
+            .doc(info.url)
+            .set({
+                ...info,
+                links: {
+                    ...links
+                }
+            })
+            .then(function(res) {
+                if (file) {
+                    storage
+                        .refFromURL("gs://passment-be.appspot.com/avatars/")
+                        .put(file)
+                        .then(msg => {
+                            alert("success");
+                        })
+                        .catch(error => {
+                            alert(error.message);
+                        });
+                }
+                resolve(res);
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+                reject(error);
+            });
+    });
 }
 
 export default backend;
 
-export { db, storage, loadData, loadMembers };
+export { db, storage, loadData, loadMembers, createMember, uploadImage };

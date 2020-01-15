@@ -1,0 +1,24 @@
+.input-list {
+    display: flex;
+    flex-direction: column;
+}
+.input-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    width: 100%;
+    margin: 5px 0;
+}
+.input-label {
+    width: 100px;
+}
+
+.input-text {
+    border: 1px solid #63ADF2;
+    max-width: 320px;
+    width: 100%;
+    border-radius: 2px;
+    height: 24px;
+    font-size: 14px;
+}
+

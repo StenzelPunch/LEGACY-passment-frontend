@@ -34,7 +34,7 @@ function loadData(params) {
                 }
             } catch (error) {
                 console.log(error);
-                params.notFound('/404')
+                params.notFound("/404");
             }
         })
         .catch(error => {
@@ -43,6 +43,18 @@ function loadData(params) {
         });
 }
 
+function loadMembers(callback) {
+    db.collection("members")
+        .get()
+        .then(res => {
+            callback(
+                res.docs.map(doc => {
+                    return doc.data();
+                })
+            );
+        });
+}
+
 export default backend;
 
-export { db, storage, loadData};
+export { db, storage, loadData, loadMembers };

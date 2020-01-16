@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2019 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="500px" height="500px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 2295.69 2295.69"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil1 {fill:white}
+    .fil0 {fill:url(#id0)}
+   ]]>
+  </style>
+  <linearGradient id="id0" gradientUnits="userSpaceOnUse" x1="336.21" y1="336.21" x2="1959.48" y2="1959.48">
+   <stop offset="0" style="stop-opacity:1; stop-color:#00AEFF"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#0BCED1"/>
+  </linearGradient>
+ </defs>
+ <g id="Слой_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="Mail">
+   <circle id="_1._x0020_Mail" class="fil0" cx="1147.84" cy="1147.84" r="1147.84"/>
+   <path id="_2._x0020_Mail" class="fil1" d="M1632.28 700.14l-968.87 0c-56.9,0 -103.31,46.37 -103.31,103.32l0 688.77c0,56.75 46.2,103.32 103.31,103.32l968.87 0c56.76,0 103.31,-46.21 103.31,-103.32l0 -688.77c0,-56.75 -46.2,-103.32 -103.31,-103.32zm-37.77 92.39l-434.78 434.78c-5.35,5.35 -14.06,5.37 -19.43,0.04l-438.54 -434.78c-4.05,-4.01 -5.21,-9.75 -3.04,-15.02 2.17,-5.27 7.03,-8.53 12.73,-8.53l873.32 0c5.69,0 10.54,3.25 12.72,8.5 2.18,5.26 1.04,10.98 -2.98,15.01zm-965.55 652.19l0 -594.29c0,-5.68 3.24,-10.52 8.48,-12.71 5.24,-2.18 10.96,-1.06 14.99,2.93l298.43 295.88c2.7,2.68 4.07,5.94 4.08,9.74 0,3.8 -1.35,7.08 -4.04,9.77l-298.44 298.42c-4.02,4.03 -9.75,5.17 -15,2.99 -5.26,-2.18 -8.5,-7.04 -8.5,-12.73zm72.21 58.45l298.72 -298.72c5.35,-5.35 14.06,-5.37 19.43,-0.05l106.58 105.65c13.46,13.36 35.19,13.31 48.59,-0.09l103.67 -103.67c5.36,-5.36 14.11,-5.36 19.47,0l296.89 296.88c4.01,4.02 5.15,9.75 2.98,15 -2.18,5.26 -7.04,8.5 -12.72,8.5l-873.87 0c-5.69,0 -10.54,-3.24 -12.72,-8.5 -2.17,-5.25 -1.04,-10.98 2.98,-15zm942.05 -48.71l-296.89 -296.88c-5.36,-5.37 -5.36,-14.11 0,-19.47l296.89 -296.89c4.03,-4.02 9.75,-5.16 15.01,-2.98 5.25,2.18 8.5,7.03 8.5,12.72l0 593.76c0,5.69 -3.25,10.55 -8.5,12.73 -5.26,2.18 -10.98,1.04 -15.01,-2.99z"/>
+  </g>
+ </g>
+</svg>

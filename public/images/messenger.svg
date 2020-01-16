@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2019 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="500px" height="500px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 498.32 498.32"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil1 {fill:white}
+    .fil0 {fill:url(#id0)}
+   ]]>
+  </style>
+  <linearGradient id="id0" gradientUnits="userSpaceOnUse" x1="249.16" y1="-0.25" x2="249.16" y2="494.14">
+   <stop offset="0" style="stop-opacity:1; stop-color:#00B2FF"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#006AFF"/>
+  </linearGradient>
+ </defs>
+ <g id="Слой_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="Messenger">
+   <circle id="_1._x0020_Messenger" class="fil0" cx="249.16" cy="249.16" r="249.16"/>
+   <path id="_2._x0020_Messenger" class="fil1" d="M99.56 312.38l73.2 -116.11c11.63,-18.44 36.59,-23.06 54.04,-9.97l58.21 43.66c5.36,4.01 12.68,3.96 17.99,-0.05l78.61 -59.66c10.48,-7.97 24.22,4.62 17.15,15.75l-73.15 116.05c-11.63,18.45 -36.59,23.07 -54.04,9.98l-58.2 -43.67c-5.37,-4.01 -12.69,-3.96 -18,0.06l-78.66 59.7c-10.48,7.97 -24.21,-4.61 -17.15,-15.74z"/>
+  </g>
+ </g>
+</svg>

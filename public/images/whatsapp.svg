@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2019 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="500px" height="500px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 498.32 498.32"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil0 {fill:url(#id0)}
+    .fil1 {fill:url(#id1);fill-rule:nonzero}
+   ]]>
+  </style>
+  <linearGradient id="id0" gradientUnits="userSpaceOnUse" x1="249.16" y1="498.32" x2="249.16" y2="0">
+   <stop offset="0" style="stop-opacity:1; stop-color:#24CF43"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#60FC7D"/>
+  </linearGradient>
+  <linearGradient id="id1" gradientUnits="userSpaceOnUse" x1="248.57" y1="391.85" x2="248.57" y2="108.9">
+   <stop offset="0" style="stop-opacity:1; stop-color:#F8F8F8"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:white"/>
+  </linearGradient>
+ </defs>
+ <g id="Слой_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="WhatsApp">
+   <circle id="_1._x0020_WhatsApp" class="fil0" cx="249.16" cy="249.16" r="249.16"/>
+   <path id="_2._x0020_WhatsApp" class="fil1" d="M107.73 391.85l19.9 -72.65c-12.27,-21.27 -18.73,-45.39 -18.72,-70.1 0.03,-77.3 62.94,-140.2 140.25,-140.2 37.52,0.02 72.73,14.62 99.21,41.12 26.48,26.5 41.05,61.73 41.04,99.19 -0.03,77.3 -62.95,140.21 -140.25,140.21 -0.01,0 0.01,0 0,0l-0.06 0c-23.47,-0.01 -46.54,-5.9 -67.02,-17.07l-74.35 19.5zm106.38 -201.36c-2.63,-5.84 -5.39,-5.95 -7.89,-6.05 -2.04,-0.09 -4.38,-0.09 -6.71,-0.09 -2.34,0 -6.14,0.88 -9.35,4.39 -3.21,3.5 -12.27,11.98 -12.27,29.22 0,17.25 12.56,33.91 14.31,36.25 1.76,2.33 24.25,38.84 59.87,52.89 29.6,11.68 35.62,9.35 42.05,8.77 6.43,-0.58 20.73,-8.48 23.65,-16.66 2.92,-8.18 2.92,-15.19 2.05,-16.66 -0.88,-1.46 -3.22,-2.34 -6.72,-4.09 -3.51,-1.75 -20.73,-10.23 -23.95,-11.4 -3.21,-1.17 -5.55,-1.75 -7.88,1.76 -2.34,3.5 -9.05,11.39 -11.1,13.73 -2.04,2.34 -4.08,2.63 -7.59,0.88 -3.5,-1.76 -14.79,-5.45 -28.18,-17.39 -10.42,-9.29 -17.45,-20.76 -19.5,-24.27 -2.04,-3.5 -0.21,-5.4 1.54,-7.15 1.58,-1.57 3.51,-4.09 5.26,-6.14 1.75,-2.04 2.33,-3.5 3.5,-5.84 1.17,-2.34 0.59,-4.38 -0.29,-6.14 -0.88,-1.75 -7.69,-19.08 -10.8,-26.01zm-28.59 156.48l0 0 4.26 2.52c17.9,10.62 38.41,16.24 59.33,16.25l0.05 0c64.25,0 116.54,-52.28 116.57,-116.53 0.01,-31.14 -12.1,-60.42 -34.11,-82.45 -22.01,-22.03 -51.28,-34.16 -82.42,-34.18 -64.3,0 -116.59,52.28 -116.61,116.53 -0.01,22.02 6.15,43.46 17.82,62.02l2.77 4.4 -11.78 43.01 44.12 -11.57z"/>
+  </g>
+ </g>
+</svg>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory} from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { loadData } from "../../backend.js";
 
 import "./Card.css";
@@ -17,7 +17,7 @@ const links = user => {
 
         return linksArray;
     } else {
-        return <Loading/>;
+        return <Loading />;
     }
 };
 
@@ -32,11 +32,11 @@ function Card(props) {
         setUser,
         setAvatarUrl,
         notFound: history.push
-    }
+    };
 
     useEffect(() => {
         if (!user) {
-            loadData(params)
+            loadData(params);
         }
     });
 
@@ -44,25 +44,35 @@ function Card(props) {
         <>
             {user ? (
                 <div className="card">
-                    <div className="card-img">
-                        <img
-                            className="card-img__avatar"
-                            src={avatarUrl ? avatarUrl : "/images/admin.png"}
-                            alt="user-avatar"
-                        />
-                    </div>
-                    <div className="card-name">{user.first_name + " " + user.last_name}</div>
-                    <div className="card-message">{user.info}</div>
-                    <div className="card-contacts">
-                        <div className="contacts-wraper">{links(user)}</div>
+                    <div className="card-wraper">
+                        <div className="card-logo">
+                            <a href="/">
+                                <img className="card-logo__img" src="/images/logo.svg" alt="Pass Ment logo" />
+                            </a>
+                        </div>
+                        <div className="card-body">
+                            <div className="body-userimage">
+                                <img
+                                    className="body-userimage__img"
+                                    src={avatarUrl ? avatarUrl : "/images/user.svg"}
+                                    alt="user pic"
+                                />
+                            </div>
+                            <div className="body-name">
+                                {`${user.first_name} ${user.last_name} ${user.patronymic ? user.patronymic : ''}`}
+                            </div>
+                            <div className="body-info">{user.info}</div>
+                            <div className="body-contacts">
+                                <div className="contacts">{links(user)}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             ) : (
-                <Loading/>
+                <Loading />
             )}
         </>
     );
 }
-
 
 export default Card;

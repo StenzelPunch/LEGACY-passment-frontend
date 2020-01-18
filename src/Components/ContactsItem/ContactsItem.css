@@ -1,15 +1,24 @@
 .contacts-item {
-    width: 72px;
-    height: 72px;
+    width: 60px;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 5px;
+    margin: 15px;
 }
 .item-image {
-    width: 64px;
+    border-radius: 100%;
+    width: 60px;
     transition: 0.1s;
 }
 .item-image:hover {
-    width: 72px;
+    width: 70px;
+    box-shadow: 2px 4px 5px rgba(0, 174, 255, 0.5);
+
+}
+
+@media screen and (max-width: 320px) {
+    .contacts-item {
+        margin: 10px;
+    } 
 }

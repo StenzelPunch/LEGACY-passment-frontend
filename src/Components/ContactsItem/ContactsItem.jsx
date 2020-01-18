@@ -5,7 +5,7 @@ function ContactsItem(props) {
     return (
         <div className="contacts-item">
             <a className="item-link" href={props.link}>
-                <img className="item-image" src={"/images/" + [props.name] + ".png"} alt={props.name + "-icon"} />
+                <img className="item-image" src={"/images/" + [props.name] + ".svg"} alt={props.name + "-icon"} />
             </a>
         </div>
     );

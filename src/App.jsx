@@ -11,14 +11,12 @@ import AdminPanel from "./Components/AdminPanel";
 function App() {
     return (
         <Router>
-            <div className="container gradient">
-                <Switch>
-                    <Route path="/__admin__" children={<AdminPanel />} />
-                    <Route path="/404" children={<NotFound />} />
-                    <Route path="/:id" children={<Card />} />
-                    <Route path="/" children={<Landing />} />
-                </Switch>
-            </div>
+            <Switch>
+                <Route path="/__admin__" children={<AdminPanel />} />
+                <Route path="/404" children={<NotFound />} />
+                <Route path="/:id" children={<Card />} />
+                <Route path="/" children={<Landing />} />
+            </Switch>
         </Router>
     );
 }

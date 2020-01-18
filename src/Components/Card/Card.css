@@ -1,3 +1,11 @@
+.card {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .card .card-wraper {
     max-width: 300px;
     width: 100%;

@@ -41,37 +41,35 @@ function Card(props) {
     });
 
     return (
-        <>
+        <div className="card">
             {user ? (
-                <div className="card">
-                    <div className="card-wraper">
-                        <div className="card-logo">
-                            <a href="/">
-                                <img className="card-logo__img" src="/images/logo.svg" alt="Pass Ment logo" />
-                            </a>
+                <div className="card-wraper">
+                    <div className="card-logo">
+                        <a href="/">
+                            <img className="card-logo__img" src="/images/logo.svg" alt="Pass Ment logo" />
+                        </a>
+                    </div>
+                    <div className="card-body">
+                        <div className="body-userimage">
+                            <img
+                                className="body-userimage__img"
+                                src={avatarUrl ? avatarUrl : "/images/user.svg"}
+                                alt="user pic"
+                            />
                         </div>
-                        <div className="card-body">
-                            <div className="body-userimage">
-                                <img
-                                    className="body-userimage__img"
-                                    src={avatarUrl ? avatarUrl : "/images/user.svg"}
-                                    alt="user pic"
-                                />
-                            </div>
-                            <div className="body-name">
-                                {`${user.first_name} ${user.last_name} ${user.patronymic ? user.patronymic : ''}`}
-                            </div>
-                            <div className="body-info">{user.info}</div>
-                            <div className="body-contacts">
-                                <div className="contacts">{links(user)}</div>
-                            </div>
+                        <div className="body-name">
+                            {`${user.first_name} ${user.last_name} ${user.patronymic ? user.patronymic : ""}`}
+                        </div>
+                        <div className="body-info">{user.info}</div>
+                        <div className="body-contacts">
+                            <div className="contacts">{links(user)}</div>
                         </div>
                     </div>
                 </div>
             ) : (
                 <Loading />
             )}
-        </>
+        </div>
     );
 }
 

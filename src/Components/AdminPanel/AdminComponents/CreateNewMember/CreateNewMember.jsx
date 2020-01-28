@@ -2,27 +2,29 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createMember } from "../../../../backend.js";
 
+import { expandLinks, expandInfo } from '../../../../DataSchema'
+
 import "./CreateNewMember.css";
 
-const createInputs = (array, state, callback) => {
+const createInputs = (state, setState) => {
     const inputsArray = [];
 
-    array.forEach(arr => {
+    state.forEach((item, index, array) => {
         inputsArray.push(
-            <div className="input-group" key={arr.name}>
-                <label className="input-label" htmlFor={arr.name}>
-                    {arr.name}:{" "}
+            <div className="input-group" key={item.name}>
+                <label className="input-label" htmlFor={item.name}>
+                    {item.name}:{" "}
                 </label>
                 <input
                     className="input-text"
-                    id={arr.name}
+                    id={item.name}
                     type="text"
-                    required={arr.required}
-                    onInput={e => {
-                        callback({
-                            ...state,
-                            [arr.name]: e.target.value
-                        });
+                    required={item.required}
+                    onChange={e => {
+                        const _arr = array;
+                        _arr[index].value = e.target.value;
+                        console.log(state);
+                        setState([..._arr]);
                     }}
                 ></input>
             </div>
@@ -33,35 +35,9 @@ const createInputs = (array, state, callback) => {
 };
 
 function CreateNewMember(props) {
-    const infoList = [
-        { name: "url", required: true },
-        { name: "first_name", required: true },
-        { name: "last_name", required: true },
-        { name: "patronymic", required: false },
-        { name: "info", required: false },
-        { name: "user_phone", required: true },
-        { name: "user_email", required: false }
-    ];
-    const linkList = [
-        { name: "email", required: false },
-        { name: "gmaps", required: false },
-        { name: "linkedin", required: false },
-        { name: "messenger", required: false },
-        { name: "skype", required: false },
-        { name: "twitter", required: false },
-        { name: "vimeo", required: false },
-        { name: "whatsapp", required: false },
-        { name: "facebook", required: false },
-        { name: "instagram", required: false },
-        { name: "phone", required: false },
-        { name: "telegram", required: false },
-        { name: "viber", required: false },
-        { name: "website", required: false },
-        { name: "youtube", required: false }
-    ];
+    const [info, setInfo] = useState(expandInfo());
+    const [links, setLinks] = useState(expandLinks());
 
-    const [info, setInfo] = useState({});
-    const [links, setLinks] = useState({});
     const [file, setFile] = useState(null);
     const [created, setCreated] = useState(false);
 
@@ -98,7 +74,7 @@ function CreateNewMember(props) {
                         <div className="create-form">
                             <div className="input-list">
                                 <h4>Member info</h4>
-                                {createInputs(infoList, info, setInfo)}
+                                {createInputs(info, setInfo)}
                                 <div className="input-group">
                                     <label className="input-label custom-file-upload" htmlFor="file">
                                         {file ? file.name : "Upload avatar"}
@@ -116,7 +92,7 @@ function CreateNewMember(props) {
                                 <h4>
                                     Links <small>**at least one of the list</small>
                                 </h4>
-                                {createInputs(linkList, links, setLinks)}
+                                {createInputs(links, setLinks)}
                             </div>
                         </div>
                         <button className="btn btn-create" type="submit" onClick={create}>
@@ -130,11 +106,13 @@ function CreateNewMember(props) {
 
     function create(e) {
         e.preventDefault();
-        createMember({info, links, file}).then(() => {
-            setCreated(true);
-        }).catch(error => {
-            console.error(error)
-        });
+        createMember({info, links, file})
+            .then(() => {
+                setCreated(true);
+            })
+            .catch(error => {
+                console.error(error);
+            });
     }
 }
 

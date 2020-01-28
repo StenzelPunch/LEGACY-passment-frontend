@@ -1,73 +1,47 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { updateMember, getMember } from "../../../../backend.js";
+import { parseInfo } from '../../../../DataSchema'
 
 import Loading from "../../../Loading";
 
 import "./UpdateMember.css";
 
-const updateInputs = (array, state, callback) => {
+const updateInputs = (state, setState) => {
     const inputsArray = [];
 
-    array.forEach((arr) => {
-        if (arr.name !== 'id' && arr.name !== 'links' && arr.name !== 'url') {
-           
-        
-        inputsArray.push(
-            <div className="input-group" key={arr.name}>
-                <label className="input-label" htmlFor={arr.name}>
-                    {arr.name}:{" "}
-                </label>
-                <input
-                    className="input-text"
-                    id={arr.name}
-                    type="text"
-                    required={arr.required}
-                    onChange={e => {
-                        callback({
-                            ...state,
-                            [arr.name]: e.target.value
-                        });
-                    }}
-                    value={state[arr.name]}
-                ></input>
-            </div>
-        );
-                }
+    state.forEach((item, index, array) => {
+        if (item.name !== "url") {
+            inputsArray.push(
+                <div className="input-group" key={item.name}>
+                    <label className="input-label" htmlFor={item.name}>
+                        {item.name}:{" "}
+                    </label>
+                    <input
+                        className="input-text"
+                        id={item.name}
+                        type="text"
+                        required={item.required}
+                        onChange={e => {
+                            const _arr = array;
+                            _arr[index].value = e.target.value;
+                            console.log(state);
+                            setState([..._arr]);
+                        }}
+                        value={item.value}
+                    ></input>
+                </div>
+            );
+        }    
     });
 
     return inputsArray;
 };
 
 function UpdateMember(props) {
-    const infoList = [
-        { name: "first_name", required: true },
-        { name: "last_name", required: true },
-        { name: "patronymic", required: false },
-        { name: "info", required: false },
-        { name: "user_phone", required: true },
-        { name: "user_email", required: false }
-    ];
-    const linkList = [
-        { name: "email", required: false },
-        { name: "gmaps", required: false },
-        { name: "linkedin", required: false },
-        { name: "messenger", required: false },
-        { name: "skype", required: false },
-        { name: "twitter", required: false },
-        { name: "vimeo", required: false },
-        { name: "whatsapp", required: false },
-        { name: "facebook", required: false },
-        { name: "instagram", required: false },
-        { name: "phone", required: false },
-        { name: "telegram", required: false },
-        { name: "viber", required: false },
-        { name: "website", required: false },
-        { name: "youtube", required: false }
-    ];
+    const [info, setInfo] = useState([]);
+    const [links, setLinks] = useState([]);
 
-    const [info, setInfo] = useState({});
-    const [links, setLinks] = useState({});
     const [file, setFile] = useState(null);
     const [updated, setUpdated] = useState(false);
 
@@ -80,15 +54,11 @@ function UpdateMember(props) {
         if (!user) {
             getMember(id)
                 .then(user => {
-                    const data = user[0];
-                    const dataInfo = {}
-                    for (let [key, value] of Object.entries(data)) {
-                            dataInfo[key] = value;
-                    } 
+                    const [_user, _info, _links] = parseInfo(user[0]);
 
-                    setInfo(dataInfo)
-                    setLinks(data.links)
-                    setUser(data);
+                    setUser(_user);
+                    setInfo(_info);
+                    setLinks(_links);
                 })
                 .catch(err => {
                     history.push("/404");
@@ -116,12 +86,12 @@ function UpdateMember(props) {
                     </>
                 ) : (
                     <div className="update">
-                        <h3 className="update-title">update new member</h3>
+                        <h3 className="update-title">Update member</h3>
                         <form>
                             <div className="update-form">
                                 <div className="input-list">
                                     <h4>Member info</h4>
-                                    {updateInputs(infoList, info, setInfo)}
+                                    {updateInputs(info, setInfo)}
                                     <div className="input-group">
                                         <label className="input-label custom-file-upload" htmlFor="file">
                                             {file ? file.name : "Upload avatar"}
@@ -136,10 +106,8 @@ function UpdateMember(props) {
                                     </div>
                                 </div>
                                 <div className="input-list">
-                                    <h4>
-                                        Links <small>**at least one of the list</small>
-                                    </h4>
-                                    {updateInputs(linkList, links, setLinks)}
+                                    <h4>Links</h4>
+                                    {updateInputs(links, setLinks)}
                                 </div>
                             </div>
                             <button className="btn btn-update" type="submit" onClick={update}>

@@ -11,8 +11,10 @@ const links = user => {
     if (user) {
         const linksArray = [];
 
-        for (let key in user.links) {
-            linksArray.push(<ContactsItem key={key} name={key} link={user.links[key]} />);
+        for (let link of user.links) {
+            if(link.value !== '') {
+                linksArray.push(<ContactsItem key={link.name} name={link.name} link={link.value} />);
+            }
         }
 
         return linksArray;

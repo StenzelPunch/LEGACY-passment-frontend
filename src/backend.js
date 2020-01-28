@@ -3,6 +3,8 @@ import "firebase/firestore";
 import "firebase/storage";
 import config from "./local/config";
 
+import { prepareInfo, prepareLinks } from "../src/DataSchema";
+
 const backend = !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
 const db = backend.firestore();
 const batch = db.batch();
@@ -50,20 +52,22 @@ function getAvatar(id) {
 }
 
 function createMember(params) {
+    const info = prepareInfo(params.info);
+    const links = prepareLinks(params.links);
+    const file = params.file;
+
     return new Promise((resolve, reject) => {
         getCount().then(id => {
             members
-                .doc(params.info.url)
+                .doc(info.url)
                 .set({
                     id,
-                    ...params.info,
-                    links: {
-                        ...params.links
-                    }
+                    ...info,
+                    links: links
                 })
                 .then(res => {
-                    if (params.file) {
-                        createAvatar(params.info.url, params.file);
+                    if (file) {
+                        createAvatar(info.url, file);
                     }
                     resolve(res);
                 })
@@ -144,18 +148,20 @@ function incrementCount() {
 }
 
 function updateMember(params) {
+    const info = prepareInfo(params.info);
+    const links = prepareLinks(params.links);
+    const file = params.file;
+
     return new Promise((resolve, reject) => {
         members
-            .doc(params.info.url)
-            .set({
-                ...params.info,
-                links: {
-                    ...params.links
-                }
+            .doc(info.url)
+            .update({
+                ...info,
+                links: links
             })
             .then(res => {
-                if (params.file) {
-                    createAvatar(params.info.url, params.file);
+                if (file) {
+                    createAvatar(info.url, file);
                 }
                 resolve(res);
             })

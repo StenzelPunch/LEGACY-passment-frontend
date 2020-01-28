@@ -44,7 +44,7 @@ function getAvatar(id) {
                 resolve(url);
             })
             .catch(error => {
-                reject(error);
+                reject(new Error(error.message));
             });
     });
 }
@@ -68,7 +68,7 @@ function createMember(params) {
                     resolve(res);
                 })
                 .catch(error => {
-                    reject(new Error(error));
+                    reject(new Error(error.message));
                 });
         });
     });
@@ -89,7 +89,7 @@ function loadMembers() {
                 );
             })
             .catch(error => {
-                reject(new Error(error));
+                reject(new Error(error.message));
             });
     });
 }
@@ -103,7 +103,7 @@ function createAvatar(url, file) {
                 resolve(msg);
             })
             .catch(error => {
-                reject(new Error(error));
+                reject(new Error(error.message));
             });
     });
 }
@@ -115,7 +115,7 @@ function deleteMember(url) {
             .delete()
             .then(() => {
                 console.log("Document successfully deleted!");
-                resolve(true)
+                resolve(true);
             })
             .catch(error => {
                 console.log("delete error");
@@ -145,47 +145,22 @@ function incrementCount() {
 
 function updateMember(params) {
     return new Promise((resolve, reject) => {
-        getCount().then(id => {
-            members
-                .doc(params.info.url)
-                .set({
-                    id,
-                    ...params.info,
-                    links: {
-                        ...params.links
-                    }
-                })
-                .then(res => {
-                    if (params.file) {
-                        updateAvatar(params.info.url, params.file);
-                    }
-                    resolve(res);
-                })
-                .catch(error => {
-                    reject(new Error(error));
-                });
-        });
-    });
-}
-
-function updateAvatar(url, file) {
-    return new Promise((resolve, reject) => {
-        storage
-            .refFromURL("gs://passment-be.appspot.com/avatars/" + url + ".png")
-            .delete()
-            .then(msg => {
-                storage
-                    .refFromURL("gs://passment-be.appspot.com/avatars/" + url + ".png")
-                    .put(file)
-                    .then(msg => {
-                        resolve(msg);
-                    })
-                    .catch(error => {
-                        reject(new Error(error));
-                    });
+        members
+            .doc(params.info.url)
+            .set({
+                ...params.info,
+                links: {
+                    ...params.links
+                }
+            })
+            .then(res => {
+                if (params.file) {
+                    createAvatar(params.info.url, params.file);
+                }
+                resolve(res);
             })
             .catch(error => {
-                reject(new Error(error));
+                reject(new Error(error.message));
             });
     });
 }

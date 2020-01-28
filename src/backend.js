@@ -5,96 +5,191 @@ import config from "./local/config";
 
 const backend = !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
 const db = backend.firestore();
+const batch = db.batch();
 const storage = backend.storage();
+const members = backend.firestore().collection("members");
+const count = members.doc("--stats--");
+const increment = firebase.firestore.FieldValue.increment(1);
 
-function loadData(params) {
-    db.collection("members")
-        .doc(params.id)
-        .get()
-        .then(doc => {
-            try {
+function getMember(id) {
+    return new Promise((resolve, reject) => {
+        members
+            .doc(id)
+            .get()
+            .then(doc => {
                 if (doc.exists) {
-                    params.setUser(doc.data());
-                    if (true) {
-                        try {
-                            storage
-                                .refFromURL(`gs://passment-be.appspot.com/avatars/${params.id}.png`)
-                                .getDownloadURL()
-                                .then(url => {
-                                    params.setAvatarUrl(url);
-                                })
-                                .catch(err => {
-                                    console.warn("Error load avatar");
-                                    console.error(err);
-                                });
-                        } catch {
-                            console.log("Can't load image");
-                        }
-                    }
+                    getAvatar(id)
+                        .then(url => {
+                            resolve([doc.data(), url]);
+                        })
+                        .catch(err => {
+                            resolve([doc.data(), null]);
+                        });
                 } else {
-                    throw new Error("No such document!");
+                    reject(new Error(`Member with id: '${id}' was not found`));
                 }
-            } catch (error) {
-                console.log(error);
-                params.notFound("/404");
-            }
-        })
-        .catch(error => {
-            console.warn("Error load user");
-            console.error(error);
-        });
+            })
+            .catch(error => {
+                reject(new Error(error));
+            });
+    });
 }
 
-function loadMembers(callback) {
-    try {
-        db.collection("members")
+function getAvatar(id) {
+    return new Promise((resolve, reject) => {
+        storage
+            .refFromURL(`gs://passment-be.appspot.com/avatars/${id}.png`)
+            .getDownloadURL()
+            .then(url => {
+                resolve(url);
+            })
+            .catch(error => {
+                reject(error);
+            });
+    });
+}
+
+function createMember(params) {
+    return new Promise((resolve, reject) => {
+        getCount().then(id => {
+            members
+                .doc(params.info.url)
+                .set({
+                    id,
+                    ...params.info,
+                    links: {
+                        ...params.links
+                    }
+                })
+                .then(res => {
+                    if (params.file) {
+                        createAvatar(params.info.url, params.file);
+                    }
+                    resolve(res);
+                })
+                .catch(error => {
+                    reject(new Error(error));
+                });
+        });
+    });
+}
+
+function loadMembers() {
+    return new Promise((resolve, reject) => {
+        members
             .get()
             .then(res => {
-                callback(
-                    res.docs.map(doc => {
+                const data = res.docs.filter(doc => {
+                    return doc.id !== "--stats--" ? true : false;
+                });
+                resolve(
+                    data.map(doc => {
                         return doc.data();
                     })
                 );
             })
             .catch(error => {
-                throw new Error(error);
+                reject(new Error(error));
             });
-    } catch (error) {
-        throw new Error(error);
-    }
+    });
 }
 
-function createMember(info, links, file) {
+function createAvatar(url, file) {
     return new Promise((resolve, reject) => {
-        db.collection("members")
-            .doc(info.url)
-            .set({
-                ...info,
-                links: {
-                    ...links
-                }
+        storage
+            .refFromURL("gs://passment-be.appspot.com/avatars/" + url + ".png")
+            .put(file)
+            .then(msg => {
+                resolve(msg);
             })
-            .then(function(res) {
-                if (file) {
-                    storage
-                        .refFromURL("gs://passment-be.appspot.com/avatars/" + info.url + ".png")
-                        .put(file)
-                        .then(msg => {
-                            alert("success");
-                        })
-                        .catch(error => {
-                            alert(error.message);
-                        });
-                }
-                resolve(res);
+            .catch(error => {
+                reject(new Error(error));
+            });
+    });
+}
+
+function deleteMember(url) {
+    return new Promise((resolve, reject) => {
+        members
+            .doc(url)
+            .delete()
+            .then(() => {
+                console.log("Document successfully deleted!");
+                resolve(true)
             })
-            .catch(function(error) {
-                console.error("Error writing document: ", error);
-                reject(error);
+            .catch(error => {
+                console.log("delete error");
+                console.error("Error removing document: ", error);
+            });
+    });
+}
+
+function getCount() {
+    return new Promise((resolve, reject) => {
+        incrementCount().then(() => {
+            count.get().then(res => {
+                resolve(res.data().id);
+            });
+        });
+    });
+}
+
+function incrementCount() {
+    return new Promise((resolve, reject) => {
+        batch.set(count, { id: increment }, { merge: true });
+        batch.commit().then(() => {
+            resolve(true);
+        });
+    });
+}
+
+function updateMember(params) {
+    return new Promise((resolve, reject) => {
+        getCount().then(id => {
+            members
+                .doc(params.info.url)
+                .set({
+                    id,
+                    ...params.info,
+                    links: {
+                        ...params.links
+                    }
+                })
+                .then(res => {
+                    if (params.file) {
+                        updateAvatar(params.info.url, params.file);
+                    }
+                    resolve(res);
+                })
+                .catch(error => {
+                    reject(new Error(error));
+                });
+        });
+    });
+}
+
+function updateAvatar(url, file) {
+    return new Promise((resolve, reject) => {
+        storage
+            .refFromURL("gs://passment-be.appspot.com/avatars/" + url + ".png")
+            .delete()
+            .then(msg => {
+                storage
+                    .refFromURL("gs://passment-be.appspot.com/avatars/" + url + ".png")
+                    .put(file)
+                    .then(msg => {
+                        resolve(msg);
+                    })
+                    .catch(error => {
+                        reject(new Error(error));
+                    });
+            })
+            .catch(error => {
+                reject(new Error(error));
             });
     });
 }
 
 export default backend;
 
-export { db, storage, loadData, loadMembers, createMember };
+export { getMember, createMember, loadMembers, deleteMember, updateMember };

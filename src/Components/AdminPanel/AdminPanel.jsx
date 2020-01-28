@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Switch, Route, Link, useRouteMatch } from "react-router-dom";
 import MembersList from './AdminComponents/MembersList';
 import CreateNewMember from './AdminComponents/CreateNewMember';
+import UpdateMember from './AdminComponents/UpdateMember';
 
 import "./AdminPanel.css";
 
@@ -11,18 +12,19 @@ function AdminPanel(props) {
     return (
         <div className="admin-panel">
             <div className="admin-panel__header">
-                <h1 className="header-title">Admin panel</h1>
+                <h2 className="header-title">Admin panel</h2>
                 <div className="header-menu">
                     <Link className="header-menu__link" to={url}>
-                        [ Members ]
+                        Members
                     </Link>
                     <Link className="header-menu__link" to={url + "/create"}>
-                        [ Create ]
+                        Create
                     </Link>
                 </div>
             </div>
             <Switch>
                 <Route path={path + "/create"} children={<CreateNewMember />} />
+                <Route path={path + "/update/:id"} children={<UpdateMember />} />
                 <Route path={path} children={<MembersList />} />
             </Switch>
         </div>

@@ -8,7 +8,7 @@
     position: absolute;
     width: 6px;
     height: 6px;
-    background: #fff;
+    background: rgba(0, 174, 255, 0.5);
     border-radius: 50%;
     animation: loading 1.2s linear infinite;
 }

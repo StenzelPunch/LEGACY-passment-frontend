@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { loadData } from "../../backend.js";
+import { getMember } from "../../backend.js";
 
 import "./Card.css";
 
@@ -27,16 +27,17 @@ function Card(props) {
 
     const { id } = useParams();
     const history = useHistory();
-    const params = {
-        id,
-        setUser,
-        setAvatarUrl,
-        notFound: history.push
-    };
 
     useEffect(() => {
         if (!user) {
-            loadData(params);
+            getMember(id).then(user => {
+                const [data, avatarUrl] = user;
+                setUser(data);
+                setAvatarUrl(avatarUrl);
+            }).catch(err => {
+                history.push('/404');
+                console.warn(err.message);
+            });
         }
     });
 

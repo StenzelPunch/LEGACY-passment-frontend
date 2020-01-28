@@ -1,16 +1,22 @@
-.create {
+.update {
     padding: 0 20px;
     margin-bottom: 20px;
 }
-
-.create-title {
+.update-loading {
+    height: 400px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.update-title {
     text-align: center;
     font-size: 22px;
     margin-bottom: 40px;
     color: #314b55;
 }
 
-.create-form {
+.update-form {
     max-width: 1000px;
     width: 100%;
     margin: 0 auto;
@@ -75,7 +81,7 @@
     background-color: #00aeff;
 }
 
-.btn-create {
+.btn-update {
     display: block;
     margin: 20px auto;
     padding: 5px;
@@ -115,7 +121,7 @@
     background-color: #00aeff;
 }
 
-.btn-create:hover {
+.btn-update:hover {
     cursor: pointer;
     color: #fff;
     background-color: rgb(50, 177, 50);
@@ -124,7 +130,7 @@ input[type="file"] {
     display: none;
 }
 
-.create small{
+.update small{
     font-size: 12px;
     font-weight: normal;
     color: #839aa3c8;

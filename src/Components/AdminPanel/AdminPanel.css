@@ -1,25 +1,20 @@
 .admin-panel {
-    max-width: 800px;
-    width: 100%;
-    min-height: calc(100vh - 120px);
-    margin: 40px;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
-    align-self: start;
-    position: relative;
+    max-width: 1440px;
+    margin: 0 auto;
 }
 
 .admin-panel__header {
+    padding: 10px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     flex-wrap: wrap;
 }
 
 .header-title {
-    margin: 0 0 20px 0;
+    margin: 0;
+    color: #314b55;
 }
 
 .header-menu {
@@ -29,16 +24,25 @@
 
 .header-menu__link {
     display: block;
-    margin-left: 20px;
-    font-size: 20px;
-    color: #175676;
+    font-size: 14px;
+    color: #00aeff;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #00aeff;
     text-decoration: none;
 }
 
 .header-menu__link:hover {
     cursor: pointer;
-    color: #63ADF2;
+    color: #fff;
+    background-color: #00aeff;
 }
+
+.header-menu__link:not(:first-child) {
+    margin-left: 10px;
+}
+
+
 
 @media screen and (max-width: 600px) {
     .admin-panel {

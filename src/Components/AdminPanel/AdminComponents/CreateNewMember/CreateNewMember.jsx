@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { createMember } from "../../../../backend.js";
 
 import "./CreateNewMember.css";
@@ -42,15 +43,21 @@ function CreateNewMember(props) {
         { name: "user_email", required: false }
     ];
     const linkList = [
+        { name: "email", required: false },
+        { name: "gmaps", required: false },
+        { name: "linkedin", required: false },
+        { name: "messenger", required: false },
+        { name: "skype", required: false },
+        { name: "twitter", required: false },
+        { name: "vimeo", required: false },
+        { name: "whatsapp", required: false },
         { name: "facebook", required: false },
         { name: "instagram", required: false },
-        { name: "email", required: false },
-        { name: "linkedin", required: false },
         { name: "phone", required: false },
         { name: "telegram", required: false },
-        { name: "twitter", required: false },
         { name: "viber", required: false },
-        { name: "vk", required: false }
+        { name: "website", required: false },
+        { name: "youtube", required: false }
     ];
 
     const [info, setInfo] = useState({});
@@ -58,10 +65,32 @@ function CreateNewMember(props) {
     const [file, setFile] = useState(null);
     const [created, setCreated] = useState(false);
 
+    const history = useHistory();
+
     return (
         <>
             {created ? (
-                <div className="creation-success">Creation success</div>
+                <>
+                    <div className="creation-success">Creation success</div>
+                    <div className="creation-actions">
+                        <div
+                            className="actions-btn"
+                            onClick={() => {
+                                history.push("/__admin__");
+                            }}
+                        >
+                            Go to members
+                        </div>
+                        <div
+                            className="actions-btn"
+                            onClick={() => {
+                                setCreated(false);
+                            }}
+                        >
+                            Add new member
+                        </div>
+                    </div>
+                </>
             ) : (
                 <div className="create">
                     <h3 className="create-title">Create new member</h3>
@@ -101,8 +130,10 @@ function CreateNewMember(props) {
 
     function create(e) {
         e.preventDefault();
-        createMember(info, links, file).then(() => {
+        createMember({info, links, file}).then(() => {
             setCreated(true);
+        }).catch(error => {
+            console.error(error)
         });
     }
 }

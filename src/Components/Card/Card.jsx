@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { getMember } from "../../backend.js";
 
 import "./Card.css";
 
 import ContactsItem from "../ContactsItem";
 import Loading from "../Loading";
+import getMember from "../../api/getMember";
+import getAvatar from "../../api/getAvatar";
 
 const links = user => {
     if (user) {
@@ -33,11 +34,15 @@ function Card(props) {
     useEffect(() => {
         if (!user) {
             getMember(id).then(user => {
-                const [data, avatarUrl] = user;
-                setUser(data);
-                setAvatarUrl(avatarUrl);
+                setUser(user);
             }).catch(err => {
                 history.push('/404');
+                console.warn(err.message);
+            });
+
+            getAvatar(id).then(url => {
+                setAvatarUrl(url)
+            }).catch(err => {
                 console.warn(err.message);
             });
         }

@@ -1,64 +1,80 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { updateMember, getMember } from "../../../../backend.js";
-import { parseInfo } from '../../../../DataSchema'
-
+import { updateMember, getMember, createAvatar} from "../../../../api";
+import linksList from "../../../../linkList";
+import MemberInput from "../MemberInput";
 import Loading from "../../../Loading";
-
 import "./UpdateMember.css";
 
-const updateInputs = (state, setState) => {
-    const inputsArray = [];
-
-    state.forEach((item, index, array) => {
-        if (item.name !== "url") {
-            inputsArray.push(
-                <div className="input-group" key={item.name}>
-                    <label className="input-label" htmlFor={item.name}>
-                        {item.name}:{" "}
-                    </label>
-                    <input
-                        className="input-text"
-                        id={item.name}
-                        type="text"
-                        required={item.required}
-                        onChange={e => {
-                            const _arr = array;
-                            _arr[index].value = e.target.value;
-                            console.log(state);
-                            setState([..._arr]);
-                        }}
-                        value={item.value}
-                    ></input>
-                </div>
-            );
-        }    
-    });
-
-    return inputsArray;
-};
-
 function UpdateMember(props) {
-    const [info, setInfo] = useState([]);
-    const [links, setLinks] = useState([]);
-
-    const [file, setFile] = useState(null);
-    const [updated, setUpdated] = useState(false);
-
-    const [user, setUser] = useState(null);
-
     const { id } = useParams();
     const history = useHistory();
+
+    const [updated, setUpdated] = useState(false);
+
+    const [file, setFile] = useState(null);
+    const [user, setUser] = useState(null);
+    const [info, setInfo] = useState({});
+    const [links, setLinks] = useState(
+        linksList.map(item => {
+            return { name: item, value: "" };
+        })
+    );
+
+    const createInputsForInfo = () => {
+        const inputsArray = [];
+
+        for (let key in info) {
+            inputsArray.push(
+                <MemberInput
+                    key={key}
+                    name={key}
+                    value={info[key]}
+                    onChange={e => {
+                        setInfo({
+                            ...info,
+                            [key]: e.target.value
+                        });
+                    }}
+                />
+            );
+        }
+        return inputsArray;
+    };
+
+    const createInputsForLinks = () => {
+        const inputsArray = [];
+        links.forEach((item, index, array) => {
+            inputsArray.push(
+                <MemberInput
+                    key={item.name}
+                    name={item.name}
+                    value={item.value}
+                    onChange={e => {
+                        const _arr = array;
+                        _arr[index].value = e.target.value;
+                        setLinks([..._arr]);
+                    }}
+                />
+            );
+        });
+        return inputsArray;
+    };
 
     useEffect(() => {
         if (!user) {
             getMember(id)
                 .then(user => {
-                    const [_user, _info, _links] = parseInfo(user[0]);
-
-                    setUser(_user);
-                    setInfo(_info);
-                    setLinks(_links);
+                    setUser(user);
+                    setInfo({
+                        first_name: user.first_name,
+                        last_name: user.last_name,
+                        patronymic: user.patronymic,
+                        info: user.info,
+                        user_phone: user.user_phone,
+                        user_email: user.user_email
+                    });
+                    setLinks(user.links);
                 })
                 .catch(err => {
                     history.push("/404");
@@ -91,7 +107,7 @@ function UpdateMember(props) {
                             <div className="update-form">
                                 <div className="input-list">
                                     <h4>Member info</h4>
-                                    {updateInputs(info, setInfo)}
+                                    {createInputsForInfo()}
                                     <div className="input-group">
                                         <label className="input-label custom-file-upload" htmlFor="file">
                                             {file ? file.name : "Upload avatar"}
@@ -107,7 +123,7 @@ function UpdateMember(props) {
                                 </div>
                                 <div className="input-list">
                                     <h4>Links</h4>
-                                    {updateInputs(links, setLinks)}
+                                    {createInputsForLinks()}
                                 </div>
                             </div>
                             <button className="btn btn-update" type="submit" onClick={update}>
@@ -126,13 +142,15 @@ function UpdateMember(props) {
 
     function update(e) {
         e.preventDefault();
-        updateMember({ info, links, file })
+        updateMember({ ...info, url: user.url, links: links })
             .then(() => {
                 setUpdated(true);
             })
             .catch(error => {
                 console.error(error);
             });
+
+        if (file) {createAvatar(user.url,file)}
     }
 }
 

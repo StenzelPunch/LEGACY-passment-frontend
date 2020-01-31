@@ -1,0 +1,22 @@
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.input-label {
+    width: 100px;
+    display: block;
+}
+
+.input-text {
+    padding: 5px;
+    border: 1px solid #00aeff;
+    border-radius: 2px;
+    width: calc(100% - 100px);
+}
+ 
+
+.input-text:focus{
+   outline: 5px solid #00aeff46;
+}

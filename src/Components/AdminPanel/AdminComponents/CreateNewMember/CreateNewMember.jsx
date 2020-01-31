@@ -1,47 +1,71 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { createMember } from "../../../../backend.js";
-
-import { expandLinks, expandInfo } from '../../../../DataSchema'
-
+import { createMember, createAvatar } from "../../../../api";
+import linksList from "../../../../linkList";
+import MemberInput from "../MemberInput";
 import "./CreateNewMember.css";
 
-const createInputs = (state, setState) => {
-    const inputsArray = [];
+function CreateNewMember(props) {
+    const [file, setFile] = useState(null);
+    const [created, setCreated] = useState(false);
+    const history = useHistory();
 
-    state.forEach((item, index, array) => {
-        inputsArray.push(
-            <div className="input-group" key={item.name}>
-                <label className="input-label" htmlFor={item.name}>
-                    {item.name}:{" "}
-                </label>
-                <input
-                    className="input-text"
-                    id={item.name}
-                    type="text"
-                    required={item.required}
+    const [info, setInfo] = useState({
+        url: "",
+        first_name: "",
+        last_name: "",
+        patronymic: "",
+        info: "",
+        user_phone: "",
+        user_email: ""
+    });
+
+    const [links, setLinks] = useState(
+        linksList.map(item => {
+            return { name: item, value: "" };
+        })
+    );
+
+    const createInputsForInfo = () => {
+        const inputsArray = [];
+
+        for (let key in info) {
+            inputsArray.push(
+                <MemberInput
+                    key={key}
+                    name={key}
+                    onChange={e => {
+                        setInfo({
+                            ...info,
+                            [key]: e.target.value
+                        });
+                    }}
+                />
+            );
+        }
+
+        return inputsArray;
+    };
+
+    const createInputsForLinks = () => {
+        const inputsArray = [];
+
+        links.forEach((item, index, array) => {
+            inputsArray.push(
+                <MemberInput
+                    key={item.name}
+                    name={item.name}
                     onChange={e => {
                         const _arr = array;
                         _arr[index].value = e.target.value;
-                        console.log(state);
-                        setState([..._arr]);
+                        setLinks([..._arr]);
                     }}
-                ></input>
-            </div>
-        );
-    });
+                />
+            );
+        });
 
-    return inputsArray;
-};
-
-function CreateNewMember(props) {
-    const [info, setInfo] = useState(expandInfo());
-    const [links, setLinks] = useState(expandLinks());
-
-    const [file, setFile] = useState(null);
-    const [created, setCreated] = useState(false);
-
-    const history = useHistory();
+        return inputsArray;
+    };
 
     return (
         <>
@@ -74,7 +98,7 @@ function CreateNewMember(props) {
                         <div className="create-form">
                             <div className="input-list">
                                 <h4>Member info</h4>
-                                {createInputs(info, setInfo)}
+                                {createInputsForInfo()}
                                 <div className="input-group">
                                     <label className="input-label custom-file-upload" htmlFor="file">
                                         {file ? file.name : "Upload avatar"}
@@ -92,7 +116,7 @@ function CreateNewMember(props) {
                                 <h4>
                                     Links <small>**at least one of the list</small>
                                 </h4>
-                                {createInputs(links, setLinks)}
+                                {createInputsForLinks()}
                             </div>
                         </div>
                         <button className="btn btn-create" type="submit" onClick={create}>
@@ -106,13 +130,23 @@ function CreateNewMember(props) {
 
     function create(e) {
         e.preventDefault();
-        createMember({info, links, file})
+        createMember({
+            ...info,
+            reg_date: new Date(),
+            sub: false,
+            uid: "",
+            sub_end_dadte: new Date(),
+            links,
+            file
+        })
             .then(() => {
                 setCreated(true);
             })
             .catch(error => {
                 console.error(error);
             });
+
+        if (file) {createAvatar(info.url, file)}
     }
 }
 

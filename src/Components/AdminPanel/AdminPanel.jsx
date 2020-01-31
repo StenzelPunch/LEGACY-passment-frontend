@@ -1,10 +1,11 @@
 import React from "react";
+import loadable from '@loadable/component';
 import { Switch, Route, Link, useRouteMatch } from "react-router-dom";
-import MembersList from './AdminComponents/MembersList';
-import CreateNewMember from './AdminComponents/CreateNewMember';
-import UpdateMember from './AdminComponents/UpdateMember';
-
 import "./AdminPanel.css";
+
+const MembersList = loadable(() => import('./AdminComponents/MembersList'))
+const CreateNewMember = loadable(() => import('./AdminComponents/CreateNewMember'))
+const UpdateMember = loadable(() => import('./AdminComponents/UpdateMember'))
 
 function AdminPanel(props) {
     const { path, url } = useRouteMatch();

@@ -1,12 +1,13 @@
 import React from "react";
+import loadable from '@loadable/component';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./App.css";
 
-import Card from "./Components/Card";
-import Landing from "./Components/Landing";
-import NotFound from "./Components/NotFound";
-import AdminPanel from "./Components/AdminPanel";
+const Card = loadable(() => import('./Components/Card'))
+const Landing = loadable(() => import('./Components/Landing'))
+const NotFound = loadable(() => import('./Components/NotFound'))
+const AdminPanel = loadable(() => import('./Components/AdminPanel'))
 
 function App() {
     return (

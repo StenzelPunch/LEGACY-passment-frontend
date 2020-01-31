@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { getMember } from "../../backend.js";
+import { getMember, getAvatar } from "../../api.ts";
 
 import "./Card.css";
 
@@ -32,14 +32,20 @@ function Card(props) {
 
     useEffect(() => {
         if (!user) {
+
             getMember(id).then(user => {
-                const [data, avatarUrl] = user;
-                setUser(data);
-                setAvatarUrl(avatarUrl);
+                setUser(user);
             }).catch(err => {
-                history.push('/404');
+                history.push('/404.html');
                 console.warn(err.message);
             });
+
+            getAvatar(id).then(url => {
+                setAvatarUrl(url);
+            }).catch(err => {
+                console.warn(err.message);
+            });
+            
         }
     });
 

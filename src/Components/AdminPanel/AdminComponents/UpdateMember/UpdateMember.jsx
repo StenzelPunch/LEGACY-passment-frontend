@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { updateMember, getMember } from "../../../../backend.js";
+import { updateMember, getMember } from "../../../../backend.ts";
 import { parseInfo } from '../../../../DataSchema'
 
 import Loading from "../../../Loading";

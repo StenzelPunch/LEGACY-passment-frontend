@@ -1,8 +1,10 @@
 import React from 'react';
 import { render } from 'react-snapshot';
-import App from './App';
 import './index.css';
 import 'normalize.css';
+import loadable from '@loadable/component'
+
+const App = loadable(() => import("./App"));
 
 render(
     <App/>,

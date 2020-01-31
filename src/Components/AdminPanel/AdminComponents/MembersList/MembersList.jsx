@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { loadMembers, deleteMember } from "../../../../backend.js";
+import { loadMembers, deleteMember } from "../../../../backend.ts";
 import { useHistory } from "react-router-dom";
 
 

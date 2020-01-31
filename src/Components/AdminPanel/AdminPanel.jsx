@@ -1,8 +1,8 @@
 import React from "react";
 import { Switch, Route, Link, useRouteMatch } from "react-router-dom";
-import MembersList from './AdminComponents/MembersList';
+// import MembersList from './AdminComponents/MembersList';
 import CreateNewMember from './AdminComponents/CreateNewMember';
-import UpdateMember from './AdminComponents/UpdateMember';
+// import UpdateMember from './AdminComponents/UpdateMember';
 
 import "./AdminPanel.css";
 
@@ -23,9 +23,9 @@ function AdminPanel(props) {
                 </div>
             </div>
             <Switch>
-                <Route path={path + "/create"} children={<CreateNewMember />} />
-                <Route path={path + "/update/:id"} children={<UpdateMember />} />
-                <Route path={path} children={<MembersList />} />
+                <Route path={path + "/"} children={<CreateNewMember />} />
+                {/* <Route path={path + "/update/:id"} children={<UpdateMember />} /> */}
+                {/* <Route path={path} children={<MembersList />} /> */}
             </Switch>
         </div>
     );

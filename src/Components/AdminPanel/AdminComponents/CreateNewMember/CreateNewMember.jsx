@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { createMember } from "../../../../backend.js";
+// import { createMember } from "../../../../backend.ts";
 
-import { expandLinks, expandInfo } from '../../../../DataSchema'
+// import { expandLinks, expandInfo } from '../../../../DataSchema'
 
 import "./CreateNewMember.css";
 
-const createInputs = (state, setState) => {
+const createInputsForInfo = (state, setState) => {
     const inputsArray = [];
 
     state.forEach((item, index, array) => {
@@ -34,9 +34,37 @@ const createInputs = (state, setState) => {
     return inputsArray;
 };
 
+const createInputsForLinks = (state, setState) => {
+    const inputsArray = [];
+    
+    state.forEach((item, index, array) => {
+        inputsArray.push(
+            <div className="input-group" key={item.name}>
+                <label className="input-label" htmlFor={item.name}>
+                    {item.name}:{" "}
+                </label>
+                <input
+                    className="input-text"
+                    id={item.name}
+                    type="text"
+                    required={item.required}
+                    onChange={e => {
+                        const _arr = array;
+                        _arr[index].value = e.target.value;
+                        console.log(state);
+                        setState([..._arr]);
+                    }}
+                ></input>
+            </div>
+        );
+    });
+
+    return inputsArray;
+};
+
 function CreateNewMember(props) {
-    const [info, setInfo] = useState(expandInfo());
-    const [links, setLinks] = useState(expandLinks());
+    const [info, setInfo] = useState();
+    const [links, setLinks] = useState();
 
     const [file, setFile] = useState(null);
     const [created, setCreated] = useState(false);
@@ -74,7 +102,7 @@ function CreateNewMember(props) {
                         <div className="create-form">
                             <div className="input-list">
                                 <h4>Member info</h4>
-                                {createInputs(info, setInfo)}
+                                {/* {createInputsForInfo(info, setInfo)} */}
                                 <div className="input-group">
                                     <label className="input-label custom-file-upload" htmlFor="file">
                                         {file ? file.name : "Upload avatar"}
@@ -92,7 +120,7 @@ function CreateNewMember(props) {
                                 <h4>
                                     Links <small>**at least one of the list</small>
                                 </h4>
-                                {createInputs(links, setLinks)}
+                                {/* {createInputsForLinks(links, setLinks)} */}
                             </div>
                         </div>
                         <button className="btn btn-create" type="submit" onClick={create}>
@@ -106,13 +134,15 @@ function CreateNewMember(props) {
 
     function create(e) {
         e.preventDefault();
-        createMember({info, links, file})
-            .then(() => {
-                setCreated(true);
-            })
-            .catch(error => {
-                console.error(error);
-            });
+        
+        // console.log(file)
+        // createMember({info, links, file})
+        //     .then(() => {
+        //         setCreated(true);
+        //     })
+        //     .catch(error => {
+        //         console.error(error);
+        //     });
     }
 }
 

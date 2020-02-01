@@ -41,6 +41,7 @@ function CreateNewMember(props) {
                             [key]: e.target.value
                         });
                     }}
+                    value={info[key]}
                 />
             );
         }
@@ -61,6 +62,7 @@ function CreateNewMember(props) {
                         _arr[index].value = e.target.value;
                         setLinks([..._arr]);
                     }}
+                    value={links[index].value}
                 />
             );
         });
@@ -143,8 +145,7 @@ function CreateNewMember(props) {
             sub: false,
             uid: "",
             sub_end_dadte: new Date(),
-            links,
-            file
+            links
         })
             .then(() => {
                 setCreated(true);

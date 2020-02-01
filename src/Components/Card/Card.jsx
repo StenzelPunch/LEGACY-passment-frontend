@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
-
+import { Helmet } from "react-helmet";
 import "./Card.css";
 
 import ContactsItem from "../ContactsItem";
@@ -13,7 +13,7 @@ const links = user => {
         const linksArray = [];
 
         for (let link of user.links) {
-            if(link.value !== '') {
+            if (link.value !== "") {
                 linksArray.push(<ContactsItem key={link.name} name={link.name} link={link.value} />);
             }
         }
@@ -52,6 +52,9 @@ function Card(props) {
         <div className="card">
             {user ? (
                 <div className="card-wraper">
+                    <Helmet>
+                        <title>{`PassMent: ${user.first_name} ${user.last_name}`}</title>
+                    </Helmet>
                     <div className="card-logo">
                         <a href="/">
                             <img className="card-logo__img" src="/images/logo.svg" alt="Pass Ment logo" />

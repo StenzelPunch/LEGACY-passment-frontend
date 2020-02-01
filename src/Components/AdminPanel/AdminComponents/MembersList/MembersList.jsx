@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { loadMembers, deleteMember } from  "../../../../api";
 import { useHistory } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 
 import changeImg from "../../../../images/change.svg";
@@ -73,6 +74,9 @@ function MembersList() {
 
     return (
         <div className="mlist">
+            <Helmet>
+                <title>Members list</title>
+            </Helmet>
             <h3 className="mlist-title" key="list-title">
                 Members list
             </h3>

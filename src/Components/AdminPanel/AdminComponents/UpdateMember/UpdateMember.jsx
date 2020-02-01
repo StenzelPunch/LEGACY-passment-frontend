@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { updateMember, getMember, createAvatar} from "../../../../api";
 import linksList from "../../../../linkList";
 import MemberInput from "../MemberInput";
@@ -88,6 +89,9 @@ function UpdateMember(props) {
             {user ? (
                 updated ? (
                     <>
+                        <Helmet>
+                            <title>Update success</title>
+                        </Helmet>
                         <div className="creation-success">Update success</div>
                         <div className="creation-actions">
                             <div
@@ -102,6 +106,9 @@ function UpdateMember(props) {
                     </>
                 ) : (
                     <div className="update">
+                        <Helmet>
+                            <title>Update: {user.url}</title>
+                        </Helmet>
                         <h3 className="update-title">Update member</h3>
                         <form>
                             <div className="update-form">

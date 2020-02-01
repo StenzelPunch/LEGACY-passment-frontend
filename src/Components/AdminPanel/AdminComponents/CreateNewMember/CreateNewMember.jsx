@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { createMember, createAvatar } from "../../../../api";
 import linksList from "../../../../linkList";
 import MemberInput from "../MemberInput";
@@ -71,6 +72,9 @@ function CreateNewMember(props) {
         <>
             {created ? (
                 <>
+                    <Helmet>
+                        <title>Creation success</title>
+                    </Helmet>
                     <div className="creation-success">Creation success</div>
                     <div className="creation-actions">
                         <div
@@ -93,6 +97,9 @@ function CreateNewMember(props) {
                 </>
             ) : (
                 <div className="create">
+                    <Helmet>
+                        <title>New member</title>
+                    </Helmet>
                     <h3 className="create-title">Create new member</h3>
                     <form>
                         <div className="create-form">

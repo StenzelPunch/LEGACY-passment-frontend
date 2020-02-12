@@ -1,5 +1,5 @@
 import React from "react";
-import { withNamespaces, Trans } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import "./Cards.scss";
 

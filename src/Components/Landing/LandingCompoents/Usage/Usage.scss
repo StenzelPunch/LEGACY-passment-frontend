@@ -1,0 +1,54 @@
+@import '../../variables.scss';
+
+
+.usage-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 15px 0;
+    .usage-items__item {
+        margin: 15px 0;
+        display: flex;
+        flex: 0 0 calc(50% - 25px);
+        .item {
+            &-number {
+                min-width: 60px;
+                height: 82px;
+                text-align: center;
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 28px;
+                color: $text-color;
+                padding: 16px 0;
+                box-sizing: border-box;
+                margin-right: 14px;
+                background: url('/images/usage-marker.svg');
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .usage-title {
+        text-align: center;
+    }
+    .usage-items {
+        max-width: 471px;
+        width: 100%;
+        margin: 0 auto;
+        .usage-items__item {
+            margin: 15px 0;
+            display: flex;
+            flex: 0 0 100%;
+        }
+    }
+   
+}
+@media screen and (max-width: 480px) {
+    .usage-title {
+        text-align: left;
+    }
+}
+@media screen and (max-width: 320px) {
+   
+}

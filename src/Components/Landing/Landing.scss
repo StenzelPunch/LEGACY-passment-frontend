@@ -1,0 +1,70 @@
+@import './variables.scss';
+
+.landing {
+    h1, h2, h3, h4, h5, h6 {
+        color: $text-color;
+        font-weight: bold;
+        font-size: 30px;
+        line-height: 35px;
+    }
+
+    p {
+        font-size: 14px;
+        color: $text-color;
+        line-height: 16px;
+        text-align: justify;
+    }
+}
+
+
+.container {
+    max-width: calc(1000px + #{$container-padding} * 2);
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 $container-padding;
+    box-sizing: border-box;
+}
+
+.btn {
+    padding: 10px 40px;
+    color: $btn-text-color;
+    text-transform: uppercase;
+    background-image: $btn-background;
+    box-shadow: $btn-shadow;
+    background-size: 250% auto;
+    background-position: right center;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    transition: 0.5s ease-in;
+    display: block;
+    font-size: 24px;
+    line-height: 28px;
+
+    &:hover {
+        cursor: pointer;
+        background-position: left center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 0 calc(#{$container-padding / 1.5});
+    }
+} 
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 0 calc(#{$container-padding / 1.5});
+    }
+} 
+
+@media screen and (max-width: 320px) {
+    .container {
+        padding: 0 calc(#{$container-padding / 2});
+    }
+} 
+
+
+
+

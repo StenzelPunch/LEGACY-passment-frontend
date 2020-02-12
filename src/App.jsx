@@ -1,15 +1,15 @@
 import React from "react";
-import loadable from '@loadable/component';
+import loadable from "@loadable/component";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
+import { withNamespaces } from "react-i18next";
 import "./App.css";
 
-const Card = loadable(() => import('./Components/Card'))
-const Landing = loadable(() => import('./Components/Landing'))
-const NotFound = loadable(() => import('./Components/NotFound'))
-const AdminPanel = loadable(() => import('./Components/AdminPanel'))
+const Card = loadable(() => import("./Components/Card"));
+const Landing = loadable(() => import("./Components/Landing"));
+const NotFound = loadable(() => import("./Components/NotFound"));
+const AdminPanel = loadable(() => import("./Components/AdminPanel"));
 
-function App() {
+function App({ t }) {
     return (
         <Router>
             <Switch>
@@ -22,4 +22,4 @@ function App() {
     );
 }
 
-export default App;
+export default withNamespaces()(App);

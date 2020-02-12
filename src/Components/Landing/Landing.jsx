@@ -1,10 +1,34 @@
 import React from "react";
-import './Landing.css'
+import {
+    Header,
+    Service,
+    Usage,
+    Innovations,
+    Image,
+    Cards,
+    Gadgets,
+    Questions,
+    Contacts,
+    Footer
+} from "./LandingCompoents";
+
+import "./Landing.scss";
 
 function Landing() {
     return (
         <div className="landing">
-            Тут мог быть ваш лендинг
+            <Header />
+            <main>
+                <Service />
+                <Usage />
+                <Innovations />
+                <Image />
+                <Cards />
+                <Gadgets />
+                <Questions />
+                <Contacts />
+            </main>
+            <Footer />
         </div>
     );
 }

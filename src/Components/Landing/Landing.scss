@@ -19,6 +19,7 @@
         line-height: 16px;
         text-align: justify;
     }
+    transition: 0.3s;
 }
 
 .container {
@@ -52,7 +53,8 @@
 }
 
 .modal-show {
-    filter: blur(35px);
+    filter: blur(10px);
+    transition: 0.3s;
 }
 
 .overlay .modal-show {
@@ -61,6 +63,17 @@
     overflow-y: hidden;
 }
 
+@keyframes modal {
+    0% {
+        top: -50px;
+        opacity: 0.4;
+    }
+
+    100% {
+        top: 0;
+        opacity: 1;
+    }
+}
 .modal {
     z-index: 999;
     filter: blur(0);
@@ -101,6 +114,8 @@
         }
     }
     &-body {
+        top: 0;
+        animation: modal .5s;
         position: relative;
         display: flex;
         flex-direction: column;
@@ -112,7 +127,6 @@
         box-shadow: 0px 8px 20px rgba(0, 174, 255, 0.5);
         border-radius: 30px;
         margin: 10px;
-        
     }
 
     .success {
@@ -134,6 +148,14 @@
         }
         &:focus {
             outline: none;
+        }
+
+        &__warning {
+            color: rgba(255, 17, 0, 1);
+            box-shadow: inset 0px 2px 5px rgba(255, 17, 0, 0.5);
+            &::placeholder {
+                color: rgba(255, 60, 0, 0.5);;
+            }
         }
     }
 

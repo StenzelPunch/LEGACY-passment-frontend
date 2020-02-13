@@ -21,22 +21,61 @@ const Modal = withNamespaces()(function({ t, close }) {
     const [email, setEmail] = useState("");
     const [ok, setOk] = useState(false);
 
+
+    const [nameWarning, setNameWarning] = useState(false);
+    const [phoneWarning, setPhoneWarning] = useState(false);
+    const [emailWarning, setEmailWarning] = useState(false);
+    const [firstCheck, setFirstCheck] = useState(false)
+
     useEffect(() => {
         if (ok) {
             setTimeout(close, 4000)
         }
+        if (firstCheck) {
+            validation()
+        }
     })
     function mail(e, payload) {
         e.preventDefault();
-        sendEmail(payload).then(() => {
-            setOk(true);
-        });
+        setFirstCheck(true)
+        if (validation()) {
+          
+            sendEmail(payload).then(() => {
+                setOk(true);
+            });
+        }
+    }
+
+    function validation () {
+        let i = 0
+        if (/[A-Za-zA-Яа-я" "]{2,64}/gm.test(name)) {
+            i++
+            setNameWarning(false);
+        } else {
+            setNameWarning(true);
+        }
+
+        if (/^\+?3?8?(0\d{9})$/.test(phone)) {
+            i++
+            setPhoneWarning(false);
+        } else {
+            setPhoneWarning(true);
+        }
+
+        if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
+            i++
+            setEmailWarning(false);
+        } else {
+            setEmailWarning(true);
+        }
+        
+        return i === 3 ? true : false;
     }
 
     return (
         <div className="modal">
-            <div className="wrapper" onClick={event => (event.target == event.currentTarget ? close() : false)}>
-                <form className={`modal-body${ok ? " success" : ""}`}>
+            <div className="wrapper" onClick={event => (event.target === event.currentTarget ? close() : false)}>
+                <div className={`modal-body${ok ? " success" : ""}`}>
                     {ok ? (
                         <div className="modal-success">
                             <img className="modal-success__img" src="/images/modal-success.svg" alt="Галочка" />
@@ -48,7 +87,7 @@ const Modal = withNamespaces()(function({ t, close }) {
                                 <img src="/images/modal-close.svg" alt="Кнопка закрыть" />
                             </div>
                             <input
-                                className="modal-input"
+                                className={`modal-input${nameWarning ? " modal-input__warning" : ""}`}
                                 placeholder={t("modal-input__name")}
                                 onChange={e => {
                                     setName(e.target.value);
@@ -57,7 +96,7 @@ const Modal = withNamespaces()(function({ t, close }) {
                                 required
                             />
                             <input
-                                className="modal-input"
+                                className={`modal-input${phoneWarning ? " modal-input__warning" : ""}`}
                                 placeholder={t("modal-input__phone")}
                                 onChange={e => {
                                     setPhone(e.target.value);
@@ -66,7 +105,7 @@ const Modal = withNamespaces()(function({ t, close }) {
                                 required
                             />
                             <input
-                                className="modal-input"
+                                className={`modal-input${emailWarning ? " modal-input__warning" : ""}`}
                                 placeholder={t("modal-input__email")}
                                 onChange={e => {
                                     setEmail(e.target.value);
@@ -74,12 +113,12 @@ const Modal = withNamespaces()(function({ t, close }) {
                                 type="email"
                                 required
                             />
-                            <button className="btn" type="submit" onClick={e => mail(e, { name, phone, email })}>
+                            <button className="btn" onClick={e => mail(e, { name, phone, email })}>
                                 {t("modal-btn")}
                             </button>
                         </>
                     )}
-                </form>
+                </div>
             </div>
         </div>
     );

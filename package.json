@@ -20,7 +20,7 @@
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "production": "GENERATE_SOURCEMAP=false react-scripts build && npm run postbuild",
-    "postbuild": "react-snapshot",
+    "postbuild": "react-snap",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "npm run production && firebase deploy",
@@ -43,8 +43,19 @@
       "last 1 safari version"
     ]
   },
+  "reactSnap": {
+    "include": [
+      "/",
+      "/admin",
+      "/__admin__"
+    ],
+    "fixWebpackChunksIssue": false,
+    "preconnectThirdParty": false,
+    "skipThirdPartyRequests": true
+  },
   "main": "index.js",
   "devDependencies": {
+    "react-snap": "^1.23.0",
     "source-map-explorer": "^2.2.2"
   },
   "author": "Stanislav Panchenko <stenzel.punch@gmail.com>",

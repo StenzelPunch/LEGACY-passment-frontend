@@ -17,7 +17,7 @@ function Gadgets({ t }) {
                         <div className="gadgets-items__iphone">
                             <img className="gadgets-items__img" src="/images/gadgets-iphone.svg" alt="iphone" />
                             <p className="gadgets-items__text">{t("gadgets-items__iphone") + " "}
-                                <a className="gadgets-items__link" href="/">{t("gadgets-items__iphone__link")}</a>
+                                <a className="gadgets-items__link" href="https://apps.apple.com/us/app/nfc-taginfo-by-nxp/id1246143596">{t("gadgets-items__iphone__link")}</a>
                             </p>
                         </div>
                     </div>

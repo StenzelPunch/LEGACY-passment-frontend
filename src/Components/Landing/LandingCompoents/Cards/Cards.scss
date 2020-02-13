@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .cards {
     margin-top: 144px;
     padding-bottom: 58px;
@@ -64,6 +66,7 @@
             text-align: center;
             margin-top: 10px;
             border-radius: 20px;
+            box-shadow: $btn-card-shadow;
         }
     }
 }

@@ -22,6 +22,10 @@
                 "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
                 "headers": [
                     {
+                        "key": "Cache-Control",
+                        "value": "max-age=604800"
+                    },
+                    {
                         "key": "Access-Control-Allow-Origin",
                         "value": "*"
                     },
@@ -36,7 +40,7 @@
                 "headers": [
                     {
                         "key": "Cache-Control",
-                        "value": "max-age=7200"
+                        "value": "max-age=604800"
                     },
                     {
                         "key": "Content-Encoding",
@@ -47,6 +51,10 @@
             {
                 "source": "**/*.@(js|css)",
                 "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "max-age=64800"
+                    },
                     {
                         "key": "Content-Encoding",
                         "value": "gzip"

@@ -14,6 +14,7 @@ function App({ t }) {
         <Router>
             <Switch>
                 <Route path="/__admin__" children={<AdminPanel />} />
+                <Route path="/404.html" children={<NotFound />} />
                 <Route path="/404" children={<NotFound />} />
                 <Route path="/:id" children={<Card />} />
                 <Route path="/" children={<Landing />} />

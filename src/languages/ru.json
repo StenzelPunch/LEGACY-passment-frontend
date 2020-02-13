@@ -33,5 +33,11 @@
     "gadgets-items__iphone__link": "приложение",
     "questions-title": "Остались вопросы?",
     "questions-text": "Свяжитесь с нами, чтобы узнать больше о специальных предложениях и долгосрочном сотрудничестве. А так же задать все интересующие вопросы",
-    "footer-text": "PassMent © 2020 All rights reserved"
+    "footer-text": "PassMent © 2020 All rights reserved",
+    "modal-success__message": "Спасибо за ваш заказ – мы свяжемся с вами в ближайшее время",
+    "modal-input__name": "Имя",
+    "modal-input__phone": "Телефон",
+    "modal-input__email": "E-mail",
+    "modal-btn": "Заказать"
+
 }

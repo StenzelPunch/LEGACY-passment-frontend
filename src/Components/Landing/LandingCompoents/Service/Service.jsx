@@ -2,7 +2,7 @@ import React from "react";
 import { withNamespaces } from "react-i18next";
 import "./Service.scss";
 
-function Service({ t }) {
+function Service({ t, onOrder }) {
     return (
         <div className="service">
             <div className="container">
@@ -14,7 +14,7 @@ function Service({ t }) {
                         <div className="service-body">
                             <h1 className="service-body__title">{t("service-body__title")}</h1>
                             <p className="service-body__text">{t("service-body__text")}</p>
-                            <button className="btn">{t("serviсe-btn")}</button>
+                            <button className="btn" onClick={onOrder}>{t("serviсe-btn")}</button>
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,7 @@ import createAvatar from "./createAvatar";
 import adminLogIn from "./adminLogIn";
 import signOut from "./signOut";
 import checkUser from "./checkUser";
+import sendEmail from "./sendEmail";
 
 export  { getMember };
 export  { createMember };
@@ -19,3 +20,4 @@ export  { createAvatar };
 export  { adminLogIn };
 export  { checkUser };
 export  { signOut };
+export  { sendEmail };

@@ -5,7 +5,7 @@ import "./Cards.scss";
 
 const prices = [100, 50, 100, 120];
 
-const Card = withNamespaces()(function({ t, index }) {
+const Card = withNamespaces()(function({ t, index, onOrder }) {
     return (
         <div className="card-container">
             <div className="card">
@@ -23,21 +23,21 @@ const Card = withNamespaces()(function({ t, index }) {
                     <span className="card-price__bold">{` ${prices[index]} `}</span>
                     {t("card-price", { returnObjects: true })[index][1]}
                 </p>
-                <button className="btn">{t("card-btn")}</button>
+                <button className="btn" onClick={onOrder}>{t("card-btn")}</button>
             </div>
         </div>
     );
 });
 
-function Cards({ t }) {
+function Cards({ t, onOrder }) {
     return (
         <div className="cards">
             <div className="container">
                 <div className="wrapper">
-                    <Card index={0} />
-                    <Card index={1} />
-                    <Card index={2} />
-                    <Card index={3} />
+                    <Card index={0} onOrder={onOrder}/>
+                    <Card index={1} onOrder={onOrder}/>
+                    <Card index={2} onOrder={onOrder}/>
+                    <Card index={3} onOrder={onOrder}/>
                 </div>
             </div>
         </div>

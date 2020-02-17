@@ -42,10 +42,10 @@ function AdminPanel(props) {
                     <div className="admin-panel__header">
                         <h2 className="header-title">Admin panel</h2>
                         <div className="header-menu">
-                            <Link className="header-menu__link" to={"__admin__"}>
+                            <Link className="header-menu__link" to={"/__admin__"}>
                                 Members
                             </Link>
-                            <Link className="header-menu__link" to={"__admin__/create"}>
+                            <Link className="header-menu__link" to={"/__admin__/create"}>
                                 Create
                             </Link>
                             <div
@@ -60,9 +60,9 @@ function AdminPanel(props) {
                         </div>
                     </div>
                     <Switch>
-                        <Route path={"__admin__/create"} children={<CreateNewMember />} />
-                        <Route path={"__admin__/update/:id"} children={<UpdateMember />} />
-                        <Route path={"__admin__"} children={<MembersList />} />
+                        <Route path={"/__admin__/create"} children={<CreateNewMember />} />
+                        <Route path={"/__admin__/update/:id"} children={<UpdateMember />} />
+                        <Route path={"/__admin__"} children={<MembersList />} />
                     </Switch>
                 </div>
             )}

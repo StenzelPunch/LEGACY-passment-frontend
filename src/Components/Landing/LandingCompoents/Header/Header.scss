@@ -14,13 +14,23 @@
 .header-languages {
     display: flex;
     &__item {
-        margin-left: 10px;
+        margin-left: 5px;
+        padding: 5px 8px 4px;
+        font-size: 10px;
+        line-height: 10px;
         color: #0763a6;
         font-weight: bold;
+        border-radius: 30px;
+        background: linear-gradient(146.3deg, #ffffff 14.65%, #ffffff 85.35%);
         &:hover {
             cursor: pointer;
-            color: #0bced1;
+            color: #ffffff;
+            background: linear-gradient(146.3deg, #00AEFF 14.65%, #0BCED1 85.35%);
         }
+    }
+    &__selected {
+        color: #ffffff;
+        background: linear-gradient(146.3deg, #00AEFF 14.65%, #0BCED1 85.35%);
     }
 }
 

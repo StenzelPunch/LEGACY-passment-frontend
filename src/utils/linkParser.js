@@ -46,7 +46,7 @@ export default function linkParser(name, link) {
             if (link.match(/https:\/\/me\.me\/.*/g)) {
                 return link;
             } else {
-                return "https://me.me/" + link;
+                return "https://m.me/" + link;
             }
         case "facebook":
             return link;

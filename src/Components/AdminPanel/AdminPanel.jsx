@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import loadable from "@loadable/component";
-import { Switch, Route, Link, useRouteMatch } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 import "./AdminPanel.css";
 import { checkUser, signOut } from "../../api";
 import Loading from "../../Components/Loading";
@@ -11,7 +11,6 @@ const UpdateMember = loadable(() => import("./AdminComponents/UpdateMember"));
 const AdminLogin = loadable(() => import("./AdminComponents/AdminLogin"));
 
 function AdminPanel(props) {
-    const { path, url } = useRouteMatch();
     const [admin, setAdmin] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -43,10 +42,10 @@ function AdminPanel(props) {
                     <div className="admin-panel__header">
                         <h2 className="header-title">Admin panel</h2>
                         <div className="header-menu">
-                            <Link className="header-menu__link" to={url}>
+                            <Link className="header-menu__link" to={"__admin__"}>
                                 Members
                             </Link>
-                            <Link className="header-menu__link" to={url + "/create"}>
+                            <Link className="header-menu__link" to={"__admin__/create"}>
                                 Create
                             </Link>
                             <div
@@ -61,9 +60,9 @@ function AdminPanel(props) {
                         </div>
                     </div>
                     <Switch>
-                        <Route path={path + "/create"} children={<CreateNewMember />} />
-                        <Route path={path + "/update/:id"} children={<UpdateMember />} />
-                        <Route path={path} children={<MembersList />} />
+                        <Route path={"__admin__/create"} children={<CreateNewMember />} />
+                        <Route path={"__admin__/update/:id"} children={<UpdateMember />} />
+                        <Route path={"__admin__"} children={<MembersList />} />
                     </Switch>
                 </div>
             )}

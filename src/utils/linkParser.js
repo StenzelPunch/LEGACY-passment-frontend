@@ -28,7 +28,7 @@ export default function linkParser(name, link) {
             if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
                 return "viber://add?number=" + link.replace("+", "%2B")
                } else {
-                return "viber://add?number=" + link 
+                return "viber://chat?number=" + link 
                }
         case "whatsapp":
             if (link.match(/https:\/\/api\.whatsapp\.com\/send\?phone=.*/g)) {

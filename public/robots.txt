@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Allow: /sitemap.xml
 Disallow: /__admin__
 Disallow: /__admin__/

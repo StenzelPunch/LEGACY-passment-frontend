@@ -16,6 +16,10 @@ function App({ t }) {
                 <Route path="/__admin__" children={<AdminPanel />} />
                 <Route path="/404.html" children={<NotFound />} />
                 <Route path="/404" children={<NotFound />} />
+                <Route path="/bage" children={<Landing preload={"bage"}/>} />
+                <Route path="/cutaway" children={<Landing preload={"cutaway"}/>} />
+                <Route path="/pin" children={<Landing preload={"pin"}/>} />
+                <Route path="/multilink" children={<Landing preload={"multilink"}/>} />
                 <Route path="/:id" children={<Card />} />
                 <Route path="/" children={<Landing />} />
             </Switch>

@@ -1,5 +1,11 @@
 @import '../../variables.scss';
-
+.visually-hidden {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+  }
 .cards {
     margin-top: 144px;
     padding-bottom: 58px;

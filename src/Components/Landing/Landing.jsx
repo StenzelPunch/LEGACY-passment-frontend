@@ -124,8 +124,8 @@ const Modal = withNamespaces()(function({ t, close }) {
     );
 });
 
-function Landing() {
-    const [showModal, setModal] = useState(false);
+function Landing({preload}) {
+    const [showModal, setModal] = useState(preload ? true : false);
 
     return (
         <div>

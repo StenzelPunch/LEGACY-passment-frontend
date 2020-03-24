@@ -13,11 +13,7 @@ export default function linkParser(name, link) {
                 return "mailto:" + link;
             }
         case "website":
-            if (link.match(/https:\/\/.*/g)) {
-                return link;
-            } else {
-                return "https://" + link;
-            }
+            return link
         case "telegram":
             if (link.match(/https:\/\/t\.me\/.*/g)) {
                 return link;
@@ -28,7 +24,7 @@ export default function linkParser(name, link) {
             if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
                 return "viber://add?number=" + link.replace("+", "%2B")
                } else {
-                return "viber://chat?number=" + link 
+                return "viber://chat?number=" + link
                }
         case "whatsapp":
             if (link.match(/https:\/\/api\.whatsapp\.com\/send\?phone=.*/g)) {
@@ -43,7 +39,7 @@ export default function linkParser(name, link) {
                 }
             }
         case "messenger":
-            if (link.match(/https:\/\/me\.me\/.*/g)) {
+            if (link.match(/https:\/\/m\.me\/.*/g)) {
                 return link;
             } else {
                 return "https://m.me/" + link;

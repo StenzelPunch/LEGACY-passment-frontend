@@ -52,10 +52,6 @@
     }
 }
 
-.modal-show {
-    filter: blur(10px);
-    transition: 0.3s;
-}
 
 .overlay .modal-show {
     position: absolute;
@@ -65,18 +61,19 @@
 
 @keyframes modal {
     0% {
-        top: -50px;
+        transform: translateY(-50%);
         opacity: 0.4;
     }
 
     100% {
-        top: 0;
+        transform: translateY(0);
         opacity: 1;
     }
 }
+
 .modal {
     z-index: 999;
-    filter: blur(0);
+    background: rgba(0,0,0,0.4);
     overflow-y: hidden;
     position: fixed;
 
@@ -115,7 +112,7 @@
     }
     &-body {
         top: 0;
-        animation: modal .5s;
+        animation: modal .3s ease-in;
         position: relative;
         display: flex;
         flex-direction: column;
